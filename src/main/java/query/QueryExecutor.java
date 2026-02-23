@@ -82,6 +82,19 @@ public class QueryExecutor {
         }
     }
 
+    /**
+     * 파라미터가 없는 단순 쿼리를 실행합니다.
+     * 주로 테스트나 단순 확인용으로 사용됩니다.
+     */
+    public void executeQuery(String sql) {
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            // 쿼리만 실행하고 결과는 무시
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute query: " + sql, e);
+        }
+    }
+
     private PreparedStatement prepareStatement(String sql, Map<String, Object> params) throws SQLException {
         // 1. Named Parameter 변환
         NamedParameterQuery query = new NamedParameterQuery(sql);

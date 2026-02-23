@@ -46,12 +46,11 @@ public class DeleteQueryBuilder {
             );
         }
 
-        StringBuilder sql = new StringBuilder();
-        sql.append("DELETE FROM ").append(table);
-        sql.append(" WHERE ").append(whereClause);
+        String sql = "DELETE FROM " + table +
+                " WHERE " + whereClause;
 
         built = true;
-        return sql.toString();
+        return sql;
     }
 
 

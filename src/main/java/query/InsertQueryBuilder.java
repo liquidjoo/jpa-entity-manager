@@ -71,21 +71,21 @@ public class InsertQueryBuilder {
         }
 
         // SQL 생성
-        StringBuilder sql = new StringBuilder();
-        sql.append("INSERT INTO ").append(table);
 
-        // 컬럼 부분: (col1, col2, col3)
-        sql.append(" (");
-        sql.append(String.join(", ", columnValues.keySet()));
-        sql.append(")");
+        String sql = "INSERT INTO " + table +
 
-        // 값 부분: VALUES (?, ?, ?)
-        sql.append(" VALUES (");
-        sql.append(String.join(", ", columnValues.values()));
-        sql.append(")");
+                // 컬럼 부분: (col1, col2, col3)
+                " (" +
+                String.join(", ", columnValues.keySet()) +
+                ")" +
+
+                // 값 부분: VALUES (?, ?, ?)
+                " VALUES (" +
+                String.join(", ", columnValues.values()) +
+                ")";
 
         built = true;
-        return sql.toString();
+        return sql;
     }
 
     public InsertQueryBuilder reset() {
